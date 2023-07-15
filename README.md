@@ -25,3 +25,33 @@ Dump subroutine pseudocodes from LST file produced by IDA Pro.
 4. Parse addresses and locate function boundaries.
 5. Generate pseudocodes for each function and save them into files in line order.
 6. Don't forget to produce the C headers file for structures.
+
+### [Cheatsheet for IDAPython](https://gist.github.com/icecr4ck/7a7af3277787c794c66965517199fc9c#get-a-function)
+
+#### Get a function
+
+```python
+f = ida_funcs.get_func(ea)
+print("%x %x" % (f.start_ea, f.end_ea))
+print(ida_funcs.get_func_name(ea)) # not necessarily the start ea
+
+for ea in Functions():
+    print("%x" % ea)
+```
+
+#### Decompile and get pseudocode
+
+```python
+def decompile(addr):
+    try:
+        cfunc = idaapi.decompile(addr)
+    except idaapi.DecompilationFailure:
+        cfunc = None
+    if cfunc is None:
+        return None
+    lines = cfunc.get_pseudocode()
+    retlines = []
+    for lnnum in range(len(lines)):
+        retlines.append(idaapi.tag_remove(lines[lnnum].line))
+    return '\n'.join(retlines)
+```
