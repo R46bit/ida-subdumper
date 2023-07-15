@@ -1,6 +1,6 @@
 # ida-subdumper
 
-**[Deprecated]** Please refer to [[Section 2]](#get-pseudo-codeproject-from-binary-with-dwarf-debug-info) for a better solution.
+**[Deprecated]** Please refer to [[Get pseudo code/project from binary with DWARF debug info]](#get-pseudo-codeproject-from-binary-with-dwarf-debug-info) for a better solution.
 
 Dump subroutine pseudocodes from LST file produced by IDA Pro.
 
@@ -24,3 +24,4 @@ Dump subroutine pseudocodes from LST file produced by IDA Pro.
 3. Load binary into the disassembler (no need to analyze or produce LST file).
 4. Parse addresses and locate function boundaries.
 5. Generate pseudocodes for each function and save them into files in line order.
+6. Don't forget to produce the C headers file for structures.
